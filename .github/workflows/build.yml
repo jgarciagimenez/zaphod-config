@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@jgarciagimenez 
+jgarciagimenez
+/
+zaphod-config
+Public
+forked from petejohanson/zaphod-config
+Code
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+zaphod-config/.github/workflows/build.yml
+@jgarciagimenez
+jgarciagimenez remove zaphod lite
+Latest commit 9dffbe1 20 days ago
+ History
+ 3 contributors
+@petejohanson@merlinvn@jgarciagimenez
+56 lines (54 sloc)  1.97 KB
+
 on: [push, pull_request, create, workflow_dispatch]
 
 name: Build
@@ -39,20 +70,19 @@ jobs:
         run: west list
       - name: Build Zaphod (west build)
         run: west build -s zmk/app -b zaphod -d build/zaphod -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Build Zaphod Lite w/ Seeeduino XIAO (west build)
-        run: west build -s zmk/app -b seeeduino_xiao -d build/zaphod_lite_xiao -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSHIELD=zaphod_lite
-      - name: Build Zaphod Lite w/ Seeeduino XIAO BLE (west build)
-        run: west build -s zmk/app -b seeeduino_xiao_ble -d build/zaphod_lite_xiao_ble -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSHIELD=zaphod_lite
+#       - name: Build Zaphod Lite w/ Seeeduino XIAO (west build)
+#         run: west build -s zmk/app -b seeeduino_xiao -d build/zaphod_lite_xiao -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSHIELD=zaphod_lite
+#       - name: Build Zaphod Lite w/ Seeeduino XIAO BLE (west build)
+#         run: west build -s zmk/app -b seeeduino_xiao_ble -d build/zaphod_lite_xiao_ble -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DSHIELD=zaphod_lite
       - name: Zaphod .config
         if: ${{ always() }}
         run: cat -n build/zaphod/zephyr/.config
       - name: Rename zmk.uf2
         run: |
           cp build/zaphod/zephyr/zmk.uf2 zaphod.uf2
-          cp build/zaphod_lite_xiao/zephyr/zmk.uf2 seeeduino_xiao_zaphod_lite.uf2
-          cp build/zaphod_lite_xiao_ble/zephyr/zmk.uf2 seeeduino_xiao_ble_zaphod_lite.uf2
       - name: Archive
         uses: actions/upload-artifact@v2
         with:
           name: firmware
           path: '*.uf2'
+zaphod-config/build.yml at main · jgarciagimenez/zaphod-config
