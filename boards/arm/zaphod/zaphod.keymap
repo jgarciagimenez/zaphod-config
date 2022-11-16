@@ -136,6 +136,25 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+	    // Sticky key on tap, normal key on hold
+	    // Useful for modifier-clicking without the modifier remaining active
+	     nk: not_so_sticky_key {
+	       compatible = "zmk,behavior-hold-tap";
+	       label = "NOT_SO_STICKY_KEY";
+	       #binding-cells = <2>;
+	       tapping_term_ms = <200>;
+	       flavor = "tap-preferred";
+	       bindings = <&kp>, <&sk>;
+	     };
+
+	    skq: sticky_key_quick_release {
+	      compatible = "zmk,behavior-sticky-key";
+	      label = "STICKY_KEY_QUICK_RELEASE";
+	      #binding-cells = <1>;
+	      bindings = <&kp>;
+	      quick-release;
+	      release-after-ms = <STICKY_KEY_TIMEOUT>;
+	    };
     };
 
     keymap {
