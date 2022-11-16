@@ -151,7 +151,7 @@
             label = "Nav";
             bindings = <
                 &trans     &trans     &trans      &trans          &trans       &trans           &trans         &trans      &trans     &trans
-                &trans     &trans     &trans      &trans          &trans       &trans           &kp LARW       &kp DARW    &kp UARW   &kp RARW
+                SK(LGUI)  SK(LALT)    SK(LSHIFT)  SK(LCTL)        &trans       &trans           &kp LARW       &kp DARW    &kp UARW   &kp RARW
                 &trans     &trans     &trans      &trans          &trans       &trans           &kp HOME       &kp PG_DN   &kp PG_UP  &kp END
                                                   &trans          &trans       &kp ESC          &kp DEL
             >;
